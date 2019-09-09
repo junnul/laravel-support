@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Rinvex\Support\Traits;
 
+use Illuminate\Support\Arr;
 use Spatie\Translatable\Events\TranslationHasBeenSet;
 use Spatie\Translatable\HasTranslations as BaseHasTranslations;
 
@@ -22,7 +23,7 @@ trait HasTranslations
             return parent::getAttributeValue($key);
         }
 
-        return $this->getTranslation($key, config('app.locale')) ?: array_first($this->getTranslations($key));
+        return $this->getTranslation($key, config('app.locale')) ?: Arr::first($this->getTranslations($key));
     }
 
     /**
